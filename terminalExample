@@ -1,0 +1,39 @@
+[james@falcon optionValuation]$ python3
+Python 3.7.3 (default, Mar 26 2019, 21:43:19) 
+[GCC 8.2.1 20181127] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import optionValuation as ov
+>>> aaplOption = ov.Option(208.45, 220, (46/365), 0.024, 0.015, "c", "aapl", "3m")
+>>> aaplOption.intrinsic()
+0
+>>> # Using 3m historic volatility it calculated upon init...
+>>> aaplOption.blackScholes()
+2.542456390784224
+>>> # actual price is 1.90
+... 
+>>> # Monte carlo, 4 sets of 250,000
+... aaplOption.monteCarlo(4)
+2.5396109053622262
+>>> aaplOption.monteCarlo(4)
+2.5440747187250574
+>>> aaplOption.greeks()
+>>> aaplOption.delta
+0.268169805609037
+>>> aaplOption.theta
+-22.39166155081674
+>>> aaplOption.gamma
+0.020405873229107557
+>>> aaplOption.vega
+24.384546810390034
+>>> aaplOption.rho
+6.724511838540545
+>>> aaplOption.impliedVol(1.90)
+/home/james/fin332/optionValuation/optionValuation.py:94: RuntimeWarning: divide by zero encountered in double_scalars
+  d1 = d1_num / d1_den
+0.19105736309599175
+>>> aaplOption.stdDev
+0.21821808394845904
+>>> # stdDev attribute is what the code calculated with IEX chart data upon init
+... 
+>>> quit()
+[james@falcon optionValuation]$ 
